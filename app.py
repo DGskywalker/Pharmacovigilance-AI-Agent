@@ -7,7 +7,7 @@ from pv_agent.agent import PharmacovigilanceAgent
 from pv_agent.charts import to_figure
 from pv_agent.config import get_settings
 
-st.set_page_config(page_title="Pharmacovigilance AI Agent", page_icon="💊", layout="wide")
+st.set_page_config(page_title="Pharmacovigilance AI Agent", layout="wide")
 settings = get_settings()
 
 EXAMPLES = [
@@ -28,14 +28,14 @@ def get_agent(db_path: str, model: str):
 
 
 with st.sidebar:
-    st.title("💊 PV Agent")
+    st.title("PV Agent")
     import os
     current_key = os.getenv("ANTHROPIC_API_KEY", "").strip()
     is_live_key = bool(current_key and current_key.lower() not in {"your-key-here", "none", "mock", "offline", "local", "free"})
     if is_live_key:
         st.success("Connected to Anthropic API")
     else:
-        st.success("🟢 Free Local Mode Active")
+        st.success("Free Local Mode Active")
         st.caption("Zero cost: runs locally using typed analysis tools and statistical signal detection without requiring any paid API key.")
 
     db_path = st.text_input("Database path", str(settings.db_path))
